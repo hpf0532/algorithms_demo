@@ -47,17 +47,17 @@ class Solution2:
     def detectCycle(self, head: ListNode) -> ListNode:
         slow = fast = head
 
-        while fast and fast.next:
+        while True:
+            if not (fast and fast.next):
+                return None
             slow = slow.next
             fast = fast.next.next
             # 双指针第一次相遇，假设slow走了n步，则此时fast走了2n步，相当于多走了一个环的长度n
             if slow == fast:
                 break
+
         # 设相遇点距环的起点的距离为m，那么环的起点距头结点head的距离为k - m，也就是说如果从
         # head前进k - m步就能到达环起点。巧的是，如果从相遇点继续前进k - m步，也恰好到达环起点。
-        if not fast or not fast.next:
-            return None
-
         slow = head
         while slow != fast:
             slow = slow.next
