@@ -37,4 +37,3 @@ class Solution:
             fast, slow = fast.next, slow.next
 
         return slow
-
